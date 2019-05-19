@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/react-queue-router/static/css/main.8cc66b1c.chunk.css",
+    "main.js": "/react-queue-router/static/js/main.1add100d.chunk.js",
+    "main.js.map": "/react-queue-router/static/js/main.1add100d.chunk.js.map",
+    "runtime~main.js": "/react-queue-router/static/js/runtime~main.8baf01b5.js",
+    "runtime~main.js.map": "/react-queue-router/static/js/runtime~main.8baf01b5.js.map",
+    "static/js/2.4f713f4a.chunk.js": "/react-queue-router/static/js/2.4f713f4a.chunk.js",
+    "static/js/2.4f713f4a.chunk.js.map": "/react-queue-router/static/js/2.4f713f4a.chunk.js.map",
+    "index.html": "/react-queue-router/index.html",
+    "precache-manifest.1e8bc4b79d3b708083d01be80ed91e20.js": "/react-queue-router/precache-manifest.1e8bc4b79d3b708083d01be80ed91e20.js",
+    "service-worker.js": "/react-queue-router/service-worker.js",
+    "static/css/main.8cc66b1c.chunk.css.map": "/react-queue-router/static/css/main.8cc66b1c.chunk.css.map",
+    "static/media/api-router-context_cycle.svg": "/react-queue-router/static/media/api-router-context_cycle.c644c6ab.svg",
+    "static/media/feature_cycle.svg": "/react-queue-router/static/media/feature_cycle.cf16602e.svg",
+    "static/media/github-logo.svg": "/react-queue-router/static/media/github-logo.c58373df.svg",
+    "static/media/logo.svg": "/react-queue-router/static/media/logo.62f88635.svg",
+    "static/media/npm-logo.svg": "/react-queue-router/static/media/npm-logo.71ac36d9.svg"
+  }
+}

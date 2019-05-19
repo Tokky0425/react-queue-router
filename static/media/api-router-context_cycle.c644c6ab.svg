@@ -1,0 +1,93 @@
+
+<svg width="959px" height="269px" viewBox="0 0 959 269" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g id="Page-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="12.9″-iPad-Pro" transform="translate(0.000000, -4.000000)">
+      <g id="Group">
+        <text id="Mounted-Component" font-family="Monaco" font-size="20" font-weight="normal" fill="#333333">
+          <tspan x="12.4931641" y="20">Mounted</tspan>
+          <tspan x="0.491210938" y="45">Component</tspan>
+        </text>
+        <text id="currentPath" font-family="Monaco" font-size="20" font-weight="normal" fill="#333333">
+          <tspan x="151" y="33">currentPath</tspan>
+        </text>
+        <text id="nextPath" font-family="Monaco" font-size="20" font-weight="normal" fill="#333333">
+          <tspan x="327" y="33">nextPath</tspan>
+        </text>
+        <g id="row" transform="translate(18.000000, 81.000000)" fill="#333333" font-family="Monaco" font-size="20" font-weight="normal">
+          <text id="&lt;Top/&gt;">
+            <tspan x="0.494140625" y="20">&lt;Top/&gt;</tspan>
+          </text>
+          <text id="/">
+            <tspan x="193.499023" y="20">/</tspan>
+          </text>
+          <text id="/">
+            <tspan x="351.499023" y="20">/</tspan>
+          </text>
+        </g>
+        <g id="step" transform="translate(438.000000, 97.000000)">
+          <path id="Line" d="M45,43 L14,43 L14,45 L45,45 L45,43 Z M45,45 L45,43 L14,43 L14,45 L45,45 Z" fill="#333333" fill-rule="nonzero"></path>
+          <path d="M-1.0658141e-14,1 L45,1" id="Path" stroke="#333333" stroke-width="2" transform="translate(22.500000, 1.000000) scale(-1, 1) rotate(-180.000000) translate(-22.500000, -1.000000) "></path>
+          <path d="M44,0 L44,45 L44,0 Z" id="Path" stroke="#333333" stroke-width="2" transform="translate(44.000000, 22.500000) scale(-1, 1) rotate(-180.000000) translate(-44.000000, -22.500000) "></path>
+          <polygon id="Triangle" fill="#333333" transform="translate(7.000000, 44.000000) scale(-1, 1) rotate(-180.000000) translate(-7.000000, -44.000000) " points="0 44 14 37 14 51"></polygon>
+          <text id="Hit-history.push-thr" font-family="Monaco" font-size="16" font-weight="normal" fill="#333333">
+            <tspan x="74" y="31">Hit history.push through &lt;Link/&gt;.</tspan>
+          </text>
+        </g>
+        <g id="row" transform="translate(19.000000, 135.000000)" fill="#333333" font-family="Monaco" font-size="20" font-weight="normal">
+          <text id="&lt;Top/&gt;">
+            <tspan x="0.494140625" y="20">&lt;Top/&gt;</tspan>
+          </text>
+          <text id="/">
+            <tspan x="193.499023" y="20">/</tspan>
+          </text>
+          <text id="/about">
+            <tspan x="321.494141" y="20">/about</tspan>
+          </text>
+        </g>
+        <g id="step" transform="translate(437.000000, 156.000000)">
+          <path id="Line" d="M45,43 L14,43 L14,45 L45,45 L45,43 Z M45,45 L45,43 L14,43 L14,45 L45,45 Z" fill="#333333" fill-rule="nonzero"></path>
+          <path d="M-1.0658141e-14,1 L45,1" id="Path" stroke="#333333" stroke-width="2" transform="translate(22.500000, 1.000000) scale(-1, 1) rotate(-180.000000) translate(-22.500000, -1.000000) "></path>
+          <path d="M44,0 L44,45 L44,0 Z" id="Path" stroke="#333333" stroke-width="2" transform="translate(44.000000, 22.500000) scale(-1, 1) rotate(-180.000000) translate(-44.000000, -22.500000) "></path>
+          <polygon id="Triangle" fill="#333333" transform="translate(7.000000, 44.000000) scale(-1, 1) rotate(-180.000000) translate(-7.000000, -44.000000) " points="0 44 14 37 14 51"></polygon>
+          <text id="Leave-animation-of-&lt;" font-family="Monaco" font-size="16" font-weight="normal" fill="#333333">
+            <tspan x="74" y="17">Leave animation of &lt;Top/&gt; starts reactively,</tspan>
+            <tspan x="74" y="37">and you call `release`.</tspan>
+          </text>
+        </g>
+        <g id="row" transform="translate(6.000000, 193.000000)" fill="#333333" font-family="Monaco" font-size="20" font-weight="normal">
+          <text id="&lt;About/&gt;">
+            <tspan x="0.4921875" y="20">&lt;About/&gt;</tspan>
+          </text>
+          <text id="/about">
+            <tspan x="175.494141" y="20">/about</tspan>
+          </text>
+          <text id="/about">
+            <tspan x="333.494141" y="20">/about</tspan>
+          </text>
+        </g>
+        <g id="step" transform="translate(437.000000, 215.000000)">
+          <path id="Line" d="M45,43 L14,43 L14,45 L45,45 L45,43 Z M45,45 L45,43 L14,43 L14,45 L45,45 Z" fill="#333333" fill-rule="nonzero"></path>
+          <path d="M-1.0658141e-14,1 L45,1" id="Path" stroke="#333333" stroke-width="2" transform="translate(22.500000, 1.000000) scale(-1, 1) rotate(-180.000000) translate(-22.500000, -1.000000) "></path>
+          <path d="M44,0 L44,45 L44,0 Z" id="Path" stroke="#333333" stroke-width="2" transform="translate(44.000000, 22.500000) scale(-1, 1) rotate(-180.000000) translate(-44.000000, -22.500000) "></path>
+          <polygon id="Triangle" fill="#333333" transform="translate(7.000000, 44.000000) scale(-1, 1) rotate(-180.000000) translate(-7.000000, -44.000000) " points="0 44 14 37 14 51"></polygon>
+          <text id="Enter-animation-of-&lt;" font-family="Monaco" font-size="16" font-weight="normal" fill="#333333">
+            <tspan x="74" y="18">Enter animation of &lt;About/&gt; starts immediately,</tspan>
+            <tspan x="74" y="38">and you call `release`.</tspan>
+          </text>
+        </g>
+        <g id="row" transform="translate(6.000000, 252.000000)" fill="#333333" font-family="Monaco" font-size="20" font-weight="normal">
+          <text id="&lt;About/&gt;">
+            <tspan x="0.4921875" y="20">&lt;About/&gt;</tspan>
+          </text>
+          <text id="/about">
+            <tspan x="175.494141" y="20">/about</tspan>
+          </text>
+          <text id="/about">
+            <tspan x="333.494141" y="20">/about</tspan>
+          </text>
+        </g>
+      </g>
+      <path d="M0,63.6649657 L430.738275,63.6649657" id="Path-2" stroke="#BABABA"></path>
+    </g>
+  </g>
+</svg>
