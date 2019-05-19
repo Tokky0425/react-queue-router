@@ -1,0 +1,67 @@
+.example02 {
+  .page-wrapper {
+    opacity: 1;
+  }
+}
+
+.example02__ttl {
+  opacity: 0;
+  transition: all .3s;
+  &.is-visible {
+    opacity: 1;
+  }
+}
+
+.example02__character {
+  transform: translateX(100%);
+  > img {
+    @include screen-sp {
+      width: 120px;
+    }
+  }
+  &.is-entering {
+    animation-name: example02-entering;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: both;
+    > img {
+      animation-name: example02-img-entering;
+      animation-duration: 1s;
+      animation-delay: .4s;
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      transform-origin: 20% bottom;
+    }
+  }
+  &.is-leaving {
+    animation-name: example02-leaving;
+    animation-duration: .6s;
+    animation-timing-function: ease-in;
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes example02-entering {
+  0% { transform: translateX(100%) }
+  100% { transform: translateX(0) }
+}
+
+@keyframes example02-leaving {
+  0% { transform: translateX(0) }
+  100% { transform: translateX(-100%) }
+}
+
+@keyframes example02-img-entering {
+  0% { transform: rotate(0deg) }
+  30% { transform: rotate(-45deg) }
+  80% { transform: rotate(-45deg) }
+  100% { transform: rotate(0deg) }
+}
+
+.example02__content {
+  opacity: 0;
+  transition: all .3s;
+  &.is-visible {
+    opacity: 1;
+  }
+}

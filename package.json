@@ -1,17 +1,48 @@
 {
   "name": "react-queue-router",
   "version": "0.1.0",
-  "private": true,
+  "description": "React Queue Router is an animation friendly router for React.",
+  "keywords": [
+    "react",
+    "reactjs",
+    "react-component",
+    "react-queue-router"
+  ],
+  "author": "Masakatsu Tokita",
+  "license": "MIT",
+  "private": false,
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tokky0425/react-queue-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tokky0425/react-queue-router/issues"
+  },
+  "homepage": "https://tokky0425.github.io/react-queue-router/",
   "dependencies": {
+    "history": "^4.9.0",
+    "path-to-regexp": "^3.0.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "gsap": "^2.1.2",
+    "node-sass": "^4.12.0",
+    "react-helmet": "^5.2.1",
+    "react-scripts": "3.0.1",
+    "react-snapshot": "^1.3.0",
+    "react-syntax-highlighter": "^10.2.1",
+    "react-testing-library": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snapshot && rm build/200.html",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy:document": "npm run build && gh-pages -d build",
+    "publish:npm": "rm -rf dist && mkdir dist && babel src/QueueRouter -d dist"
   },
   "eslintConfig": {
     "extends": "react-app"

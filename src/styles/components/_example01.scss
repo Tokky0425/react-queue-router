@@ -1,0 +1,47 @@
+.example01 {
+  .page-wrapper {
+    opacity: 1;
+  }
+}
+.example01__inner {
+  opacity: 0;
+}
+.example01__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+}
+.example01__cover__item {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 25%;
+  background-color: $accent;
+  overflow: hidden;
+  > span {
+    position: absolute;
+    left: 50%;
+    color: #fff;
+    @include screen-pc {
+      font-size: 72px;
+    }
+    @include screen-sp {
+      font-size: 42px;
+    }
+  }
+  &:nth-child(2) {
+    > span {
+      bottom: 0;
+      transform: translate(-50%, 50%);
+    }
+  }
+  &:nth-child(3) {
+    > span {
+      top: 0;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

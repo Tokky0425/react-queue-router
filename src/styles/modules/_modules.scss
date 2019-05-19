@@ -1,0 +1,136 @@
+.hdg-01 {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  @include screen-pc {
+    margin-bottom: 55px;
+    padding: 0 60px;
+    font-size: 48px;
+  }
+  @include screen-sp {
+    margin-bottom: 30px;
+    padding: 0 20px;
+    font-size: 36px;
+  }
+}
+
+.hdg-02 {
+  @include screen-pc {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  @include screen-sp {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+}
+
+.hdg-03 {
+  @include screen-pc {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 22px;
+  }
+  @include screen-sp {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 10px;
+  }
+}
+
+.txt-01 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.caution {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  color: #f8354f;
+  background-color: #f8dde4;
+}
+
+.list-01 {
+  margin: 15px 0 15px 35px;
+  list-style: disc;
+  > li {
+    &:not(:first-child) {
+      margin-top: 15px;
+    }
+  }
+}
+
+.img-01 {
+  text-align: center;
+  @include screen-pc {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  @include screen-sp {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+.code-01 {
+  @include screen-pc {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  @include screen-sp {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+.code-block {
+  position: relative;
+}
+.code-block__inner {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.code-block__filename {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 6px 12px;
+  font-size: 16px;
+  border-radius: 6px 0 6px 0;
+  background-color: $accent;
+  color: #fff;
+  @include font-code;
+  &+.code-block__inner pre {
+    padding: 50px 24px 18px 24px !important;
+  }
+}
+
+.inline-code {
+  padding: 3px 6px;
+  border-radius: 4px;
+  background-color: $bg;
+  @include font-code;
+}
+
+.table-01 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: solid 1px $border;
+    padding: 7px 12px;
+  }
+  thead {
+    th {
+      background-color: $bg;
+    }
+  }
+}

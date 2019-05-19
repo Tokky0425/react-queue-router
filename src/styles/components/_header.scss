@@ -1,0 +1,97 @@
+.header {
+  width: 100%;
+  @include screen-sp {
+    position: relative;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    z-index: 3;
+  }
+}
+.header__inner {
+  @include screen-sp {
+    display: flex;
+  }
+  > a {
+    @include screen-pc {
+      display: block;
+    }
+    @include screen-sp {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      height: 50px;
+      padding: 0 20px;
+    }
+  }
+}
+.header__logo {
+  display: block;
+  transform-origin: center top;
+  transition: .3s all;
+  @include screen-pc {
+    width: 70px;
+    margin: 0 auto;
+  }
+  @include screen-sp {
+    width: 30px !important;
+  }
+  .is-home & {
+    width: 0;
+  }
+}
+.header__ttl {
+  @include screen-pc {
+    margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+  }
+  @include screen-sp {
+    margin-left: 10px;
+    font-size: 12px;
+  }
+}
+.header__menu-btn {
+  @include screen-pc {
+    display: none;
+  }
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  > span {
+    position: absolute;
+    left: 13px;
+    display: block;
+    width: 24px;
+    height: 1px;
+    background-color: $accent;
+    transform-origin: center center;
+    transition: all .4s;
+    &:nth-child(1) {
+      top: 16px;
+    }
+    &:nth-child(2) {
+      top: 25px;
+    }
+    &:nth-child(3) {
+      top: 34px;
+    }
+  }
+  &.is-open {
+    > span {
+      &:nth-child(1) {
+        top: 25px;
+        transform: rotate(315deg);
+      }
+      &:nth-child(2) {
+        transform: rotate(315deg);
+        opacity: 0;
+      }
+      &:nth-child(3) {
+        top: 25px;
+        transform: rotate(405deg);
+      }
+    }
+  }
+}

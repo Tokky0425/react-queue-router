@@ -1,0 +1,29 @@
+@mixin screen-pc {
+  @media screen and (min-width: 768px) {
+    @content
+  }
+}
+
+@mixin screen-sp {
+  @media screen and (max-width: 767px) {
+    @content
+  }
+}
+
+@mixin scroll-bar {
+  @include screen-pc {
+    &::-webkit-scrollbar{
+      width: 10px;
+    }
+    &::-webkit-scrollbar-thumb{
+      background: #e6e6e6;
+    }
+    &::-webkit-scrollbar-track{
+      background: #f8f8f8;
+    }
+  }
+}
+
+@mixin font-code {
+  font-family: Inconsolata, Consolas, 'Courier New', Courier, Monaco, monospace !important;
+}

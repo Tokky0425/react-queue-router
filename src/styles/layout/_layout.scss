@@ -1,0 +1,105 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  @include screen-pc {
+    padding-left: 220px;
+  }
+}
+
+.side {
+  position: absolute;
+  top: 0;
+  left: 0;
+  @include scroll-bar;
+  @include screen-pc {
+    width: 220px;
+    height: 100%;
+    padding: 30px 20px;
+    border-right: solid 1px $border;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  @include screen-sp {
+    width: 100%;
+  }
+}
+.side__inner {
+  width: 100%;
+  @include screen-sp {
+    height: 100%;
+  }
+}
+
+.container {
+  position: relative;
+  height: 100%;
+  @include screen-sp {
+    padding-top: 50px;
+  }
+}
+.container__inner {
+  height: 100%;
+  @include scroll-bar;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.page-wrapper {
+  position: relative;
+  min-height: 100%;
+  opacity: 0;
+  @include screen-pc {
+    padding: 100px 0;
+  }
+  @include screen-sp {
+    padding: 30px 0;
+  }
+}
+
+.page-section {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  @include screen-pc {
+    margin-top: 55px;
+    padding: 0 60px;
+  }
+  @include screen-sp {
+    margin-top: 30px;
+    padding: 0 20px;
+  }
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+  a {
+    color: $accent;
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.page-section--ttl {
+  max-width: 100%;
+}
+
+.page-sub-section {
+  margin-top: 30px;
+}
