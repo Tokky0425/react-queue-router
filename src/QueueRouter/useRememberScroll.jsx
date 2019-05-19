@@ -1,5 +1,7 @@
-import {useEffect, useRef} from 'react'
-import history, {historyStore} from "./history"
+import {useEffect, useRef, useContext} from 'react'
+import history from './history'
+import {RouterHistoryContext} from './RouterContext'
+
 
 if ('scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
@@ -10,6 +12,7 @@ let currentCount = 0
 
 const useRememberScroll = (currentPath, rememberScroll) => {
   const isFirst = useRef(true)
+  const {historyStore} = useContext(RouterHistoryContext)
 
   useEffect(() => {
     history.replace({
@@ -31,10 +34,10 @@ const useRememberScroll = (currentPath, rememberScroll) => {
       window.scrollTo(0, 0)
     }
 
-    const {action} = historyStore.latest
+    const {action} = historyStore.current.latest
     if (action === 'PUSH') {
       localHistoryStore = localHistoryStore.slice(0, currentCount+1)
-      localHistoryStore.push(historyStore.latest)
+      localHistoryStore.push(historyStore.current.latest)
       window.scrollTo(0, 0)
       currentCount++
       return
@@ -43,12 +46,12 @@ const useRememberScroll = (currentPath, rememberScroll) => {
     // TODO: detect back or forward when currentCount is 0
     if (currentCount === 0) {
       localHistoryStore = []
-      localHistoryStore.push(historyStore.latest)
+      localHistoryStore.push(historyStore.current.latest)
       window.scrollTo(0, 0)
       return
     }
 
-    const latestKey = historyStore.latest.key
+    const latestKey = historyStore.current.latest.key
     const prevKey = localHistoryStore[currentCount - 1].key
     const isGoingBack = latestKey === prevKey
 

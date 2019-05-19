@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import ReactDOM from 'react-dom'
 import {act} from 'react-testing-library'
-import history from '../history'
 import {QueueRouter, RouterContext} from '../index'
-import {RouterSetterContext} from "../RouterContext"
+import {RouterSetterContext, RouterHistoryContext} from '../RouterContext'
+import history from '../history'
 
 let rootNode
 let currentPathVal
@@ -14,7 +14,8 @@ let setNextPathVal
 
 const ContextChecker = () => {
   const {currentPath, nextPath} = useContext(RouterContext)
-  const {historyStore, setCurrentPath, setNextPath} = useContext(RouterSetterContext)
+  const {setCurrentPath, setNextPath} = useContext(RouterSetterContext)
+  const {historyStore} = useContext(RouterHistoryContext)
   currentPathVal = currentPath
   nextPathVal = nextPath
   historyStoreVal = historyStore
@@ -53,7 +54,6 @@ describe('A <QueueRouter>', () => {
   it('passes values down to its children via context', () => {
     expect(currentPathVal).toBeTruthy()
     expect(nextPathVal).toBeTruthy()
-    expect(historyStoreVal.current).toBeTruthy()
     expect(setCurrentPathVal).toBeTruthy()
     expect(setNextPathVal).toBeTruthy()
   })
@@ -69,26 +69,26 @@ describe('A <QueueRouter>', () => {
   })
 
   it('updates the historyStore in reaction to history event', () => {
-    expect(historyStoreVal.current.length).toBe(0)
+    expect(historyStoreVal.current.store.length).toBe(0)
 
     act(() => { history.push('/about') })
-    expect(historyStoreVal.current[0]).toBe('/about')
+    expect(historyStoreVal.current.store[0].pathname).toBe('/about')
 
     act(() => { history.push('/contact') })
     act(() => { history.goBack() })
     act(() => { jest.runAllTimers() })
-    expect(historyStoreVal.current[2]).toBe('/about')
+    expect(historyStoreVal.current.store[2].pathname).toBe('/about')
   })
 
   it('updates historyStore only when the path is not same as the last one', () => {
-    expect(historyStoreVal.current.length).toBe(0)
+    expect(historyStoreVal.current.store.length).toBe(0)
 
     act(() => { history.push('/about') })
     act(() => { history.push('/about') })
-    expect(historyStoreVal.current.length).toBe(1)
+    expect(historyStoreVal.current.store.length).toBe(1)
 
     act(() => { history.push('/contact') })
-    expect(historyStoreVal.current[0]).toBe('/about')
-    expect(historyStoreVal.current[1]).toBe('/contact')
+    expect(historyStoreVal.current.store[0].pathname).toBe('/about')
+    expect(historyStoreVal.current.store[1].pathname).toBe('/contact')
   })
 })
