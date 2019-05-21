@@ -14,8 +14,7 @@ let setNextPathVal
 
 const ContextChecker = () => {
   const {currentPath, nextPath} = useContext(RouterContext)
-  const {setCurrentPath, setNextPath} = useContext(RouterSetterContext)
-  const {historyStore} = useContext(RouterHistoryContext)
+  const {historyStore, setCurrentPath, setNextPath} = useContext(RouterSetterContext)
   currentPathVal = currentPath
   nextPathVal = nextPath
   historyStoreVal = historyStore
@@ -69,26 +68,26 @@ describe('A <QueueRouter>', () => {
   })
 
   it('updates the historyStore in reaction to history event', () => {
-    expect(historyStoreVal.current.store.length).toBe(0)
+    expect(historyStoreVal.current.length).toBe(0)
 
     act(() => { history.push('/about') })
-    expect(historyStoreVal.current.store[0].pathname).toBe('/about')
+    expect(historyStoreVal.current[0].pathname).toBe('/about')
 
     act(() => { history.push('/contact') })
     act(() => { history.goBack() })
     act(() => { jest.runAllTimers() })
-    expect(historyStoreVal.current.store[2].pathname).toBe('/about')
+    expect(historyStoreVal.current[2].pathname).toBe('/about')
   })
 
   it('updates historyStore only when the path is not same as the last one', () => {
-    expect(historyStoreVal.current.store.length).toBe(0)
+    expect(historyStoreVal.current.length).toBe(0)
 
     act(() => { history.push('/about') })
     act(() => { history.push('/about') })
-    expect(historyStoreVal.current.store.length).toBe(1)
+    expect(historyStoreVal.current.length).toBe(1)
 
     act(() => { history.push('/contact') })
-    expect(historyStoreVal.current.store[0].pathname).toBe('/about')
-    expect(historyStoreVal.current.store[1].pathname).toBe('/contact')
+    expect(historyStoreVal.current[0].pathname).toBe('/about')
+    expect(historyStoreVal.current[1].pathname).toBe('/contact')
   })
 })

@@ -8,7 +8,7 @@ const Link = ({children, to}) => {
       pathname: event.currentTarget.pathname,
       search: event.currentTarget.search,
     }, {
-      prevScrollPosition: window.pageYOffset
+      scrollY: 0
     })
   }
 

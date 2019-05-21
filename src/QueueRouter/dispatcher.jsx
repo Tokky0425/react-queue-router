@@ -1,5 +1,5 @@
 import {useContext, useEffect} from 'react'
-import {RouterHistoryContext, RouterSetterContext} from './RouterContext'
+import {RouterScrollContext, RouterSetterContext} from './RouterContext'
 import {SwitchContext} from './SwitchContext'
 
 // prevent multiple dispatches, useLeaveEnds and useEnterEnds at the same time
@@ -9,15 +9,14 @@ let isLeaving = false
 let isEntering = false
 
 export const dispatch = (historyStore, setCurrentPath, setNextPath) => {
-  if (!historyStore.current.store[0] || isTransiting || isLeaving || !isEntering) return
+  if (!historyStore.current[0] || isTransiting || isLeaving || !isEntering) return
   isEntering = false
   isTransiting = true
-  setNextPath(historyStore.current.store[0].pathname)
+  setNextPath(historyStore.current[0].pathname)
 }
 
 const useEnterEnd = () => {
-  const {setCurrentPath, setNextPath} = useContext(RouterSetterContext)
-  const {historyStore} = useContext(RouterHistoryContext)
+  const {historyStore, setCurrentPath, setNextPath} = useContext(RouterSetterContext)
 
   return () => {
     // first mount only
@@ -28,9 +27,9 @@ const useEnterEnd = () => {
       return
     }
 
-    if (!historyStore.current.store[0] || !isTransiting || !isLeaving || isEntering) return
+    if (!historyStore.current[0] || !isTransiting || !isLeaving || isEntering) return
     isEntering = true // get this `false` in `dispatch` function
-    historyStore.current.store.shift()
+    historyStore.current.shift()
     isLeaving = false
     isTransiting = false
     dispatch(historyStore, setCurrentPath, setNextPath)
@@ -38,14 +37,18 @@ const useEnterEnd = () => {
 }
 
 const useLeaveEnd = () => {
-  const {setCurrentPath} = useContext(RouterSetterContext)
-  const {historyStore} = useContext(RouterHistoryContext)
+  const {historyStore, setCurrentPath} = useContext(RouterSetterContext)
+  const {tmpScrollMemo} = useContext(RouterScrollContext)
 
   return () => {
-    if (!historyStore.current.store[0] || !isTransiting || isLeaving || isEntering) return
+    if (!historyStore.current[0] || !isTransiting || isLeaving || isEntering) return
     isLeaving = true
-    historyStore.current.latest = historyStore.current.store[0]
-    setCurrentPath(historyStore.current.store[0].pathname)
+    // remember current scroll position
+    tmpScrollMemo.current = {
+      action: historyStore.current[0].action,
+      key: historyStore.current[0].key,
+    }
+    setCurrentPath(historyStore.current[0].pathname)
   }
 }
 

@@ -1,74 +1,59 @@
 import {useEffect, useRef, useContext} from 'react'
 import history from './history'
-import {RouterHistoryContext} from './RouterContext'
+import {RouterScrollContext} from './RouterContext'
 
 
 if ('scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
 }
 
-let localHistoryStore = []
-let currentCount = 0
-
 const useRememberScroll = (currentPath, rememberScroll) => {
   const isFirst = useRef(true)
-  const {historyStore} = useContext(RouterHistoryContext)
+  const {scrollStore, tmpScrollStore, tmpScrollMemo} = useContext(RouterScrollContext)
 
   useEffect(() => {
-    history.replace({
-      pathname: window.location.pathname
-    }, {
-      prevScrollPosition: window.pageYOffset
-    })
-    localHistoryStore.push({action: history.action, ...history.location})
-  }, [])
+    // when rememberScroll is false, scroll to the top of the page every time page changes
+    if (!rememberScroll) {
+      window.scrollTo(0, 0)
+      return
+    }
 
-  useEffect(() => {
     if (isFirst.current) {
+      // fire replace event to get `key` of history object
+      history.replace({
+        pathname: window.location.pathname
+      })
+      scrollStore.current.push({
+        key: history.location.key,
+        scrollY: 0
+      })
       isFirst.current = false
       return
     }
 
-    // when rememberScroll is false, scroll to the top of the page every time page changes
-    if (!rememberScroll) {
-      window.scrollTo(0, 0)
+    const store = scrollStore.current
+    const {action, key} = tmpScrollMemo.current
+    let scrollY = 0
+
+    if (action === 'POP') {
+      for (let i = store.length - 1; i >= 0; i--) {
+        if (store[i].key === key) {
+          scrollY = store[i].scrollY
+          break
+        }
+      }
     }
 
-    const {action} = historyStore.current.latest
-    if (action === 'PUSH') {
-      localHistoryStore = localHistoryStore.slice(0, currentCount+1)
-      localHistoryStore.push(historyStore.current.latest)
-      window.scrollTo(0, 0)
-      currentCount++
-      return
-    }
+    const y = window.pageYOffset
+    store[store.length - 1].scrollY = y // set current scroll Y to the current key
+    const newScrollItem = { key, scrollY: 0 }
+    const tmpStore = tmpScrollStore.current
+    tmpStore.forEach(val => { val.scrollY = y }) // rewrite scrollY
 
-    // TODO: detect back or forward when currentCount is 0
-    if (currentCount === 0) {
-      localHistoryStore = []
-      localHistoryStore.push(historyStore.current.latest)
-      window.scrollTo(0, 0)
-      return
-    }
+    scrollStore.current = [...store, ...tmpStore, newScrollItem] // merge
+    tmpScrollStore.current = [] // reset
 
-    const latestKey = historyStore.current.latest.key
-    const prevKey = localHistoryStore[currentCount - 1].key
-    const isGoingBack = latestKey === prevKey
-
-    if (isGoingBack) {
-      // when hitting back button
-      const y = localHistoryStore[currentCount].state.prevScrollPosition // get the scroll position for the page you are going
-      localHistoryStore[currentCount].state.prevScrollPosition = window.pageYOffset // this will be referred when hitting forward button later
-      window.scrollTo(0, y)
-      currentCount--
-    } else {
-      // when hitting forward button
-      const y = localHistoryStore[currentCount + 1].state.prevScrollPosition // get the scroll position for the page you are going
-      localHistoryStore[currentCount + 1].state.prevScrollPosition = window.pageYOffset // this will be referred when hitting back button later
-      window.scrollTo(0, y)
-      currentCount++
-    }
-
+    window.scrollTo(0, scrollY)
   }, [currentPath])
 }
 
