@@ -1,5 +1,5 @@
 import React from 'react'
-import {matchPath} from '../index'
+import { matchPath } from '../index'
 
 describe('matchPath', () => {
   it('return truthy when the given pathname matches', () => {

@@ -1,8 +1,8 @@
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom'
-import {act} from 'react-testing-library'
-import {QueueRouter, RouterContext} from '../index'
-import {RouterSetterContext, RouterHistoryContext} from '../RouterContext'
+import { act } from 'react-testing-library'
+import { QueueRouter, RouterContext } from '../index'
+import { RouterSetterContext, RouterHistoryContext } from '../RouterContext'
 import history from '../history'
 
 let rootNode
@@ -13,26 +13,26 @@ let setCurrentPathVal
 let setNextPathVal
 
 const ContextChecker = () => {
-  const {currentPath, nextPath} = useContext(RouterContext)
-  const {historyStore, setCurrentPath, setNextPath} = useContext(RouterSetterContext)
+  const { currentPath, nextPath } = useContext(RouterContext)
+  const { historyStore, setCurrentPath, setNextPath } = useContext(RouterSetterContext)
   currentPathVal = currentPath
   nextPathVal = nextPath
   historyStoreVal = historyStore
   setCurrentPathVal = setCurrentPath
   setNextPathVal = setNextPath
-  return (
-    <div/>
-  )
+  return <div />
 }
 
 const TestNode = () => (
   <QueueRouter>
-    <ContextChecker/>
+    <ContextChecker />
   </QueueRouter>
 )
 
 const mount = () => {
-  act(() => { ReactDOM.render(<TestNode/>, rootNode) })
+  act(() => {
+    ReactDOM.render(<TestNode />, rootNode)
+  })
 }
 
 describe('A <QueueRouter>', () => {
@@ -41,7 +41,9 @@ describe('A <QueueRouter>', () => {
   beforeEach(() => {
     rootNode = document.createElement('div')
     document.body.appendChild(rootNode)
-    act(() => { history.push('/') })
+    act(() => {
+      history.push('/')
+    })
     mount()
   })
 
@@ -58,11 +60,15 @@ describe('A <QueueRouter>', () => {
   })
 
   it('updates the paths to be passed down to its children', () => {
-    act(() => { setCurrentPathVal('/about') })
+    act(() => {
+      setCurrentPathVal('/about')
+    })
     expect(currentPathVal).toBe('/about')
     expect(nextPathVal).toBe('/')
 
-    act(() => { setNextPathVal('/about') })
+    act(() => {
+      setNextPathVal('/about')
+    })
     expect(currentPathVal).toBe('/about')
     expect(nextPathVal).toBe('/about')
   })
@@ -70,23 +76,37 @@ describe('A <QueueRouter>', () => {
   it('updates the historyStore in reaction to history event', () => {
     expect(historyStoreVal.current.length).toBe(0)
 
-    act(() => { history.push('/about') })
+    act(() => {
+      history.push('/about')
+    })
     expect(historyStoreVal.current[0].pathname).toBe('/about')
 
-    act(() => { history.push('/contact') })
-    act(() => { history.goBack() })
-    act(() => { jest.runAllTimers() })
+    act(() => {
+      history.push('/contact')
+    })
+    act(() => {
+      history.goBack()
+    })
+    act(() => {
+      jest.runAllTimers()
+    })
     expect(historyStoreVal.current[2].pathname).toBe('/about')
   })
 
   it('updates historyStore only when the path is not same as the last one', () => {
     expect(historyStoreVal.current.length).toBe(0)
 
-    act(() => { history.push('/about') })
-    act(() => { history.push('/about') })
+    act(() => {
+      history.push('/about')
+    })
+    act(() => {
+      history.push('/about')
+    })
     expect(historyStoreVal.current.length).toBe(1)
 
-    act(() => { history.push('/contact') })
+    act(() => {
+      history.push('/contact')
+    })
     expect(historyStoreVal.current[0].pathname).toBe('/about')
     expect(historyStoreVal.current[1].pathname).toBe('/contact')
   })

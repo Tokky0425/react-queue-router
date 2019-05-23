@@ -1,12 +1,10 @@
-import React, {Fragment} from 'react'
-import {useTransition} from './dispatcher'
+import React, { Fragment } from 'react'
+import { useTransition } from './dispatcher'
 
 const FallbackComponent = () => {
   useTransition()
 
-  return (
-    <Fragment/>
-  )
+  return <Fragment />
 }
 
 export default FallbackComponent

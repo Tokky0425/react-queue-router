@@ -4,22 +4,22 @@ const compilePath = (path, options) => {
   const keys = []
   const regexp = pathToRegexp(path, keys, options)
 
-  return {regexp, keys}
+  return { regexp, keys }
 }
 
 const matchPath = (pathname, options = {}) => {
   if (typeof options === 'string') {
-    options = {path: options}
+    options = { path: options }
   }
 
-  const {path, exact = true, strict = false, sensitive = false} = options
+  const { path, exact = true, strict = false, sensitive = false } = options
   const paths = [].concat(path)
 
   return paths.reduce((matched, path) => {
     if (!path) return null
     if (matched) return matched
 
-    const {regexp, keys} = compilePath(path, {
+    const { regexp, keys } = compilePath(path, {
       end: exact,
       strict,
       sensitive,
@@ -39,7 +39,7 @@ const matchPath = (pathname, options = {}) => {
       params: keys.reduce((memo, key, index) => {
         memo[key.name] = values[index]
         return memo
-      }, {})
+      }, {}),
     }
   }, null)
 }

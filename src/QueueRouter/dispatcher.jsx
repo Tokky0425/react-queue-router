@@ -1,6 +1,6 @@
-import {useContext, useEffect} from 'react'
-import {RouterScrollContext, RouterSetterContext} from './RouterContext'
-import {SwitchContext} from './SwitchContext'
+import { useContext, useEffect } from 'react'
+import { RouterScrollContext, RouterSetterContext } from './RouterContext'
+import { SwitchContext } from './SwitchContext'
 
 // prevent multiple dispatches, useLeaveEnds and useEnterEnds at the same time
 let isFirstTime = true
@@ -16,7 +16,7 @@ export const dispatch = (historyStore, setCurrentPath, setNextPath) => {
 }
 
 const useEnterEnd = () => {
-  const {historyStore, setCurrentPath, setNextPath} = useContext(RouterSetterContext)
+  const { historyStore, setCurrentPath, setNextPath } = useContext(RouterSetterContext)
 
   return () => {
     // first mount only
@@ -37,8 +37,8 @@ const useEnterEnd = () => {
 }
 
 const useLeaveEnd = () => {
-  const {historyStore, setCurrentPath} = useContext(RouterSetterContext)
-  const {tmpScrollMemo} = useContext(RouterScrollContext)
+  const { historyStore, setCurrentPath } = useContext(RouterSetterContext)
+  const { tmpScrollMemo } = useContext(RouterScrollContext)
 
   return () => {
     if (!historyStore.current[0] || !isTransiting || isLeaving || isEntering) return
@@ -53,13 +53,17 @@ const useLeaveEnd = () => {
 }
 
 export const useTransition = (enterAnimation = null, leaveAnimation = null) => {
-  const {leaving} = useContext(SwitchContext) // `leaving` is passed down in Switch component
+  const { leaving } = useContext(SwitchContext) // `leaving` is passed down in Switch component
   const enterEnd = useEnterEnd()
   const leaveEnd = useLeaveEnd()
 
   useEffect(() => {
     leaving
-      ? leaveAnimation ? leaveAnimation({release: leaveEnd}) : leaveEnd()
-      : enterAnimation ? enterAnimation({release: enterEnd}) : enterEnd()
+      ? leaveAnimation
+        ? leaveAnimation({ release: leaveEnd })
+        : leaveEnd()
+      : enterAnimation
+      ? enterAnimation({ release: enterEnd })
+      : enterEnd()
   }, [leaving])
 }

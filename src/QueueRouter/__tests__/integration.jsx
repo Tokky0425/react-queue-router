@@ -1,43 +1,63 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {getByText, fireEvent, act} from 'react-testing-library'
+import { getByText, fireEvent, act } from 'react-testing-library'
 import history from '../history'
-import {QueueRouter, Switch, Route, Link, useTransition} from '../index'
+import { QueueRouter, Switch, Route, Link, useTransition } from '../index'
 
 let rootNode
 
 const Top = () => {
   useTransition(enterAnimation, leaveAnimation)
-  return <div><h1>Top page</h1></div>
+  return (
+    <div>
+      <h1>Top page</h1>
+    </div>
+  )
 }
 
 const About = () => {
   useTransition(enterAnimation, leaveAnimation)
-  return <div><h1>About page</h1></div>
+  return (
+    <div>
+      <h1>About page</h1>
+    </div>
+  )
 }
 
-const User = ({params}) => {
+const User = ({ params }) => {
   useTransition(enterAnimation, leaveAnimation)
-  return <div><h1>User page (ID: {params.id})</h1></div>
+  return (
+    <div>
+      <h1>User page (ID: {params.id})</h1>
+    </div>
+  )
 }
 
 const NotFound = () => {
   useTransition(enterAnimation, leaveAnimation)
-  return <div><h1>404 page</h1></div>
+  return (
+    <div>
+      <h1>404 page</h1>
+    </div>
+  )
 }
 
-const enterAnimation = ({release}) => {
-  setTimeout(() => { release() }, 1000)
+const enterAnimation = ({ release }) => {
+  setTimeout(() => {
+    release()
+  }, 1000)
 }
 
-const leaveAnimation = ({release}) => {
-  setTimeout(() => { release() }, 2000)
+const leaveAnimation = ({ release }) => {
+  setTimeout(() => {
+    release()
+  }, 2000)
 }
 
 // simulate clicking Link
 const clickNavigation = (container, text) => {
   act(() => {
-    fireEvent.click(getByText(container,text))
+    fireEvent.click(getByText(container, text))
   })
 }
 
@@ -56,29 +76,31 @@ const TestNode = () => (
     <Link to='/users/2'>Navigate to User 2</Link>
     <Link to='/404'>Navigate to 404</Link>
     <Switch>
-      <Route path='/' component={Top}/>
-      <Route path='/about' component={About}/>
-      <Route path='/users/:id' component={User}/>
-      <Route component={NotFound}/>
+      <Route path='/' component={Top} />
+      <Route path='/about' component={About} />
+      <Route path='/users/:id' component={User} />
+      <Route component={NotFound} />
     </Switch>
   </QueueRouter>
 )
 
 const mount = () => {
-  act(() => { ReactDOM.render(<TestNode/>, rootNode) })
+  act(() => {
+    ReactDOM.render(<TestNode />, rootNode)
+  })
 }
 
 describe('Integration test', () => {
-  jest.useFakeTimers();
+  jest.useFakeTimers()
 
   beforeEach(() => {
     rootNode = document.createElement('div')
-    document.body.appendChild(rootNode);
+    document.body.appendChild(rootNode)
   })
 
   afterEach(() => {
-    document.body.removeChild(rootNode);
-    rootNode = null;
+    document.body.removeChild(rootNode)
+    rootNode = null
   })
 
   it('works without a crash', () => {
@@ -114,7 +136,9 @@ describe('Integration test', () => {
     expect(rootNode.innerHTML).toContain('User page (ID: 2)')
 
     // hit browser back
-    act(() => { history.goBack() })
+    act(() => {
+      history.goBack()
+    })
     fastForward() // This is run but nothing will happen at router level
     fastForward()
     fastForward()
