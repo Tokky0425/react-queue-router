@@ -7,7 +7,7 @@ import FallbackComponent from './FallbackComponent'
 
 const Switch = ({children, rememberScroll=false}) => {
   const {currentPath, nextPath} = useContext(RouterContext)
-  useRememberScroll(currentPath, rememberScroll)
+  useRememberScroll(currentPath, nextPath, rememberScroll)
   let isElementFound = false
   let element
 

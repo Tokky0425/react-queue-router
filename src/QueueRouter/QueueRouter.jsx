@@ -11,6 +11,7 @@ const QueueRouter = ({children}) => {
 
   // these Refs will be used in `useRememberScroll`
   const scrollStore = useRef([])
+  // object with `key` will be stored in `tmpScrollStore` when the hit link is same as the current one
   const tmpScrollStore = useRef([])
   const tmpScrollMemo = useRef({key: '', scrollY: 0})
 

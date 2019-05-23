@@ -4,11 +4,12 @@ import {RouterScrollContext} from './RouterContext'
 
 
 if ('scrollRestoration' in window.history) {
-  window.history.scrollRestoration = 'manual';
+  window.history.scrollRestoration = 'manual'
 }
 
-const useRememberScroll = (currentPath, rememberScroll) => {
+const useRememberScroll = (currentPath, nextPath, rememberScroll) => {
   const isFirst = useRef(true)
+  const y = useRef(0) // scroll position when transit starts will be set
   const {scrollStore, tmpScrollStore, tmpScrollMemo} = useContext(RouterScrollContext)
 
   useEffect(() => {
@@ -32,29 +33,31 @@ const useRememberScroll = (currentPath, rememberScroll) => {
     }
 
     const store = scrollStore.current
+    const tmpStore = tmpScrollStore.current
     const {action, key} = tmpScrollMemo.current
     let scrollY = 0
 
     if (action === 'POP') {
       for (let i = store.length - 1; i >= 0; i--) {
         if (store[i].key === key) {
-          scrollY = store[i].scrollY
+          scrollY = store[i].scrollY // get the previous scroll position
           break
         }
       }
     }
 
-    const y = window.pageYOffset
-    store[store.length - 1].scrollY = y // set current scroll Y to the current key
-    const newScrollItem = { key, scrollY: 0 }
-    const tmpStore = tmpScrollStore.current
-    tmpStore.forEach(val => { val.scrollY = y }) // rewrite scrollY
+    store[store.length - 1].scrollY = y.current // set the current scroll position
+    tmpStore.forEach(val => { val.scrollY = y.current }) // rewrite by the current scroll position
+    const newScrollItem = { key, scrollY: scrollY }
 
     scrollStore.current = [...store, ...tmpStore, newScrollItem] // merge
     tmpScrollStore.current = [] // reset
-
     window.scrollTo(0, scrollY)
   }, [currentPath])
+
+  useEffect(() => {
+    y.current = window.pageYOffset // remember the current scroll position
+  }, [nextPath])
 }
 
 export default useRememberScroll
