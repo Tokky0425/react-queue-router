@@ -22,6 +22,8 @@ const useRememberScroll = (currentPath, nextPath, rememberScroll) => {
       // fire replace event to get `key` of history object
       history.replace({
         pathname: window.location.pathname,
+        search: window.location.search,
+        hash: window.location.hash,
       })
       scrollStore.current.push({
         key: history.location.key,

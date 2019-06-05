@@ -8,6 +8,7 @@ const Link = ({ children, to }) => {
       {
         pathname: event.currentTarget.pathname,
         search: event.currentTarget.search,
+        hash: event.currentTarget.hash,
       },
       {
         scrollY: 0,
